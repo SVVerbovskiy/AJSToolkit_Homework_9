@@ -1,0 +1,346 @@
+@font-face {
+    font-family: "OpenSans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../font/OpenSans-Regular.woff") format("woff");
+  }
+  
+  :root {
+    --bg-color: #e2e2e2;
+    --border-color: #999999;
+    --shadow-color: #7e7e7e;
+  }
+  
+  body {
+    position: relative;
+    color: #1b1b1b;
+    font-family: "OpenSans";
+  
+    background: linear-gradient( var(--border-color), transparent 1px), linear-gradient( 90deg, var(--border-color), transparent 1px);
+      background-size: 18px 18px;
+      background-position: center center;
+    background-color: var(--bg-color);
+  
+    /* min-height: 100vh; */
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Общие стили для полосы прокрутки */
+  /* Ширина и цвет полосы прокрутки */
+  ::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+    border-radius: 0 3px 3px 0;
+  }
+  
+  /* Стили для "бегунка" полосы прокрутки */
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+  }
+  
+  /* тень от наведения мышкой на полосу прокрутки */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--border-color);
+  }
+  
+  #hw {
+    margin: 20px auto;
+    max-width: 500px;
+  }
+  
+  .header {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  .header p:first-child {
+    border-bottom: 2px solid var(--border-color);
+  }
+  
+  .timeline-container, .popup-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    min-width: 320px;
+    max-width: 700px;
+    margin: 20px auto;
+  
+    border-radius: 3px;
+    box-shadow: 0px 0px 8px 2px var(--shadow-color);
+  
+    background-color: var(--bg-color);
+  }
+  
+  .timeline-container {
+    min-height: 450px;
+    max-height: calc(90vh - 140px);
+  }
+  
+  .timeline {
+    box-sizing: border-box;
+    /* white-space: pre; */
+    /* min-height: 400px; */
+    width: 94%;
+    height: 100%;
+    margin: 15px auto 0;
+    padding: 15px;
+    /* border: 1px solid red; */
+    border-radius: 3px;
+    background-color: var(--bg-color);
+    box-shadow: inset 0 0 10px var(--border-color); /* Настройте параметры тени здесь */
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .message-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  /* .message-left {
+    align-items: flex-start;
+  }
+  
+  .message-right {
+    align-items: flex-end;
+    text-align: end;
+  } */
+  
+  .message {
+    margin-top: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+  }
+  
+  .message:hover {
+    box-shadow: 0 0 10px var(--border-color);
+  }
+  
+  .message-date {
+    padding: 3px 7px;
+    text-align: right;
+    color: var(--border-color);
+    border-radius: 10px 10px 0 0;
+    font-size: 75%;
+  }
+  
+  .message-body {
+    padding: 2px 8px;
+    word-break: break-all;
+  }
+  
+  .message-geo {
+    padding: 8px;
+    text-align: left;
+    color: var(--border-color);
+    font-size: 90%;
+  }
+  
+  .message-geo:hover, .message-date:hover {
+    color: #1b1b1b;
+  }
+  
+  .timeline-form {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 95%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .timeline-body-message {
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 10px 115px 10px 10px;
+    border: 1px solid var(--bg-color);
+    border-radius: 3px;
+    box-shadow: inset 0 0 2px var(--border-color);
+  }
+  
+  .timeline-body-message:focus {
+    outline: none;
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 0 1px var(--border-color);
+  }
+  
+  .timeline-btns {
+    position: absolute;
+    top: 0; right: 11px; bottom: 0;
+    display: flex;
+    gap: 11px;
+    align-items: center;
+  }
+  
+  .timeline-btn  {
+    box-sizing: border-box;
+    display: flex;
+  
+    width: 25px;
+    height: 25px;
+  
+    line-height: 25px;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
+  
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+  
+  }
+  
+  .timeline-btn:hover  {
+    background-color: var(--bg-color);
+    box-shadow: 0 0 4px var(--border-color);
+  }
+  
+  @keyframes glow {
+    0% {
+    /* border-color: #0062ff; */
+    box-shadow: inset 0 0 4px rgba(255, 0, 0, .3);
+    }	
+    100% {
+    /* border-color: #0062ff; */
+    box-shadow: inset 0 0 6px rgba(255, 0, 0, .9);
+    }
+  }
+  
+  .error-add {
+    animation: glow 500ms ease-out infinite alternate;
+  }
+  
+  /* Стили для попапа */
+  .popup {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Полупрозрачный фон */
+    z-index: 9999; /* Очень большой z-index, чтобы попап был поверх всего */
+  }
+  
+  .popup-container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    max-width: 380px;
+    transform: translate(-50%, -50%); /* Чтобы попап был по центру экрана */
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 9999; /* Очень большой z-index, чтобы попап был поверх всего */
+  }
+  
+  .popup-header, .popup-text, .popup-geo, .popup-buttons {
+    box-sizing: border-box;
+    width: 95%;
+    padding: 7px;
+    margin: 7px auto 0;
+  
+    font-size: 100%;
+    text-align: center;
+  
+    border: 1px solid #999999;
+    border-radius: 5px;
+  }
+  
+  .popup-text {
+    border: none;
+    font-size: 14px;
+    text-align: left;
+    white-space: normal; /* Переносит текст на новую строку */
+    word-wrap: break-word; /* Ломает слова по слогам, чтобы вписать в блок */
+  }
+  
+  .popup-geo {
+    flex-grow: 1;
+    box-sizing: border-box;
+  
+    border: 1px solid var(--bg-color);
+    border-radius: 3px;
+    box-shadow: inset 0 0 2px var(--border-color);
+  }
+  
+  .popup-geo:focus {
+    outline: none;
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 0 1px var(--border-color);
+  }
+  
+  .popup-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: right;
+    flex-direction: row-reverse;
+    border: none;
+    margin-bottom: 0px;
+  }
+  
+  .popup-btn {
+    padding: 5px 7px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 1px var(--shadow-color);
+    cursor: pointer;
+  }
+  
+  .popup-btn:hover {
+    background-color: var(--bg-color);
+    box-shadow: 0px 0px 6px 2px var(--shadow-color);
+  }
+  
+  .popup-btn:active {
+    box-shadow: none; /* Убираем тень */
+    position: relative; /* Позволит смещать кнопку на небольшое расстояние */
+    top: 2px; /* Небольшое смещение вниз */
+  }
+  
+  .close {
+    display: none;
+  }
+  
+  .read-only {
+    background: linear-gradient(to right, var(--bg-color), white);
+  }
+  
+  .video {
+    width: 100%;
+    max-height: 320px;
+    background: var(--border-color);
+    border-radius: 10px;
+  }
+  
+  .audio {
+    width: 100%;
+  }
+  
+  .stream {
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 36px; left: 0; right: 0;
+    width: calc(100% - 2px);
+    margin: auto;
+    padding: 10px 10px 0 10px;
+  
+    background-color: var(--bg-color);
+  
+    /* border: 1px solid var(--bg-color); */
+    box-shadow: inset 0 0 2px var(--border-color);
+    border-radius: 15px 15px 0 0;
+    border-bottom: none;
+  
+    z-index: 999;
+  }
